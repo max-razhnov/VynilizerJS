@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+    180.3deg,
+    rgba(221, 221, 221, 1) 5.5%,
+    rgba(110, 136, 161, 1) 90.2%
+  );
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vynil-container {
+  position: relative;
+  width: 700px;
+  height: 700px;
+  background: url("img/Base.png") top no-repeat / contain;
+}
+
+.codek {
+  position: relative;
+  margin: 35px 0 0 25px;
+  width: 450px;
+  height: 450px;
+}
+
+.buttons {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 190px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.songList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  width: 20%;
+  height: 30%;
+}
+button {
+  cursor: pointer;
+}
+
+.btn {
+  outline: 1px solid #085078;
+  border-radius: 3px;
+  width: 60px;
+  height: 30px;
+  border: none;
+  text-transform: uppercase;
+  font: 30px / normal;
+  color: #fff;
+  background: #4776e6;
+  box-shadow: 0 0 10px 5px #085078;
+}
+
+h1 {
+  font: 30px / normal "Proxima Nova Medium";
+  color: #516395;
+  text-transform: uppercase;
+}
+
+h2 {
+  position: absolute;
+  font: 20px / normal "Proxima Nova Medium";
+  margin: 0;
+  color: #fff;
+  top: 35%;
+  left: 36%;
+  text-align: right;
+  padding-left: 10px;
+}
+
+h4 {
+  color: #fff;
+  font: 30px / normal "Proxima Nova Medium";
+  text-align: center;
+  margin: 5px;
+}
+
+h5,
+#info {
+  width: 100%;
+  font: 16px / normal "Proxima Nova Medium";
+  margin: 0;
+  color: #fff;
+}
+
+.songList > button {
+  font: 14px / normal "Proxima Nova Medium";
+  color: #fff;
+  outline: none;
+  border: none;
+  background: #928dab;
+  border-radius: 1px;
+  box-shadow: 0 0 10px 0 #1f1c2c;
+}
