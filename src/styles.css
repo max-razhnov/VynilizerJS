@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "ProximaNova Medium";
+  src: url("fonts/ProximaNova/ProximaNova-Semibold.woff") format("woff"),
+    url("fonts/ProximaNova/ProximaNova-Semibold.ttf") format("ttf");
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -48,9 +54,10 @@ body {
   position: absolute;
   top: 20%;
   right: 5%;
-  width: 20%;
+  width: 23%;
   height: 30%;
 }
+
 button {
   cursor: pointer;
 }
@@ -108,4 +115,14 @@ h5,
   background: #928dab;
   border-radius: 1px;
   box-shadow: 0 0 10px 0 #1f1c2c;
+}
+
+#strela {
+  position: absolute;
+  transform: rotate(300deg);
+  width: 7.7rem;
+  top: 41.3%;
+  bottom: 0;
+  left: 10%;
+  height: 20rem;
 }

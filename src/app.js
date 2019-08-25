@@ -1,127 +1,212 @@
-const buttonPlay = document.getElementsByClassName("btn")[1];
-const buttonNext = document.getElementById("next");
-const buttonPrevious = document.getElementById("previous");
-const plst = document.getElementsByClassName("codek")[0];
-const audio = document.getElementById("audio");
-const nameOfSong = document.getElementById("song-name");
-const timer = document.getElementById("info");
-const audioSongs = [
-  "Adrift",
-  "A_Great_Darkness_Approaches_Can_You_Feel_It",
-  "Apollo_The_Wicked"
-];
-const format = ".mp3";
-const btnSongList = document.getElementsByClassName("songList")[0];
+import {
+  buttonPlay,
+  buttonNext,
+  buttonPrevious,
+  plst,
+  audio,
+  nameOfSong,
+  timer,
+  audioSongs,
+  format,
+  strela,
+  btnSongTop,
+  btnSongDown,
+  btnSongMiddle
+} from "./const.js";
 
 let flag = false;
 let angle = 0;
 let currentSong = 0;
-btnSongList.addEventListener("click", setSong);
+let t = 100;
+let rotateCoord = 300;
+let endCoord = 250;
+
+btnSongTop.removeEventListener("click", setSong);
+btnSongDown.removeEventListener("click", setSong);
+btnSongMiddle.removeEventListener("click", setSong);
+buttonNext.removeEventListener("click", switchSong);
+buttonPrevious.removeEventListener("click", switchSong);
+buttonPlay.removeEventListener("click", startPlay);
+
+buttonPlay.addEventListener("click", startPlay);
+buttonNext.addEventListener("click", switchSong);
+buttonPrevious.addEventListener("click", switchSong);
+btnSongTop.addEventListener("click", setSong);
+btnSongDown.addEventListener("click", setSong);
+btnSongMiddle.addEventListener("click", setSong);
 audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
 
-buttonNext.removeEventListener("click", nextSong);
-buttonPrevious.removeEventListener("click", previousSong);
-buttonPlay.removeEventListener("click", startPlay); // for memory leaking
-buttonPlay.addEventListener("click", startPlay);
-buttonNext.addEventListener("click", nextSong);
-buttonPrevious.addEventListener("click", previousSong);
-
 function startPlay() {
-  flagChanger();
-  animation();
-  if (flag) {
-    audio.play();
-    audio.ontimeupdate = () => {
-      CurrTime();
-    };
-    btnText("Stop");
+  try {
+    flag = !flag;
+    animation();
+    strelaRotation();
+    if (flag) {
+      audio.play();
+      audioTime();
+      btnText("Stop");
+      setSongName();
+    } else {
+      audio.pause();
+      btnText("Start");
+    }
+  } catch (e) {
+    console.log(e + " /\t Start error");
+  }
+}
+
+function setSongName() {
+  try {
     let arr = audioSongs[currentSong].split("_");
     arr.length = 3;
     let strName = arr.join(" ");
     nameOfSong.innerText = strName;
-  } else {
-    audio.pause();
-    btnText("Start");
+  } catch (e) {
+    console.log(e + "setSongName error");
   }
 }
 
 function btnText(msg) {
-  buttonPlay.innerText = msg;
-}
-
-function CurrTime() {
-  if (audio.ended) {
-    flagChanger();
-    animation();
-    btnText("Start");
-  } else {
-    timeTracker(audio.currentTime);
+  try {
+    buttonPlay.innerText = msg;
+  } catch (e) {
+    console.log(e + "/\t btnText error");
   }
 }
 
 function timeTracker(currentTime) {
-  timer.innerText = currentTime.toFixed(2) + "s";
+  try {
+    timer.innerText = currentTime.toFixed(2) + "s";
+  } catch (e) {
+    console.log(e + "/\t + timeTracker error");
+  }
+}
+
+function audioTime() {
+  try {
+    audio.ontimeupdate = () => {
+      if (audio.ended) {
+        flag = false;
+        animation();
+        btnText("Start");
+        if (currentSong >= 2) {
+          currentSong = 0;
+        } else {
+          currentSong++;
+        }
+      } else {
+        timeTracker(audio.currentTime);
+      }
+    };
+  } catch (e) {
+    console.log(e + "/\t audioTime error");
+  }
 }
 
 function animation() {
-  if (flag) {
-    if (angle >= 360) {
-      angle = 0;
+  try {
+    if (flag) {
+      if (angle >= 360) {
+        angle = 0;
+      }
+      angle++;
+      plst.style.transform = `rotate(${angle}deg)`;
+      nameOfSong.style.transformOrigin = "left center";
+      nameOfSong.style.transform = `rotate(${angle}deg)`;
+      setTimeout(animation, 20);
     }
-    angle++;
-    plst.style.transform = `rotate(${angle}deg)`;
-    nameOfSong.style.transformOrigin = "left center";
-    nameOfSong.style.transform = `rotate(${angle}deg)`;
-    setTimeout(animation, 20);
+  } catch (e) {
+    console.log(e + "/\t + animation error");
   }
 }
 
-function flagChanger() {
-  flag = !flag;
-}
-function previousSong() {
-  audio.pause();
-  flagChanger();
-  if (buttonPlay.innerText == "Stop") {
-    animation();
+function switchSong() {
+  try {
+    setStrelaStartPosition();
+    setStartPosOfAngle();
+    if (!flag) {
+      flag = true;
+      animation();
+      strelaRotation();
+    }
+    btnText("Stop");
+    audioTime();
+    if (this.id === "next") {
+      if (currentSong >= 2) {
+        currentSong = 0;
+      } else {
+        currentSong++;
+      }
+    } else if (this.id === "previous") {
+      if (currentSong <= 0) {
+        currentSong = 2;
+      } else {
+        currentSong--;
+      }
+    }
+    audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
+    setSongName();
+    audio.play();
+  } catch (e) {
+    console.log(e + "/\t + switching song error");
   }
-  btnText("Start");
-  if (currentSong <= 0) {
-    currentSong = 2;
-  } else {
-    currentSong--;
-  }
-  audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
-}
-
-function nextSong() {
-  audio.pause();
-  flagChanger();
-  if (buttonPlay.innerText == "Start") {
-    animation();
-  }
-  btnText("Start");
-  if (currentSong >= 2) {
-    currentSong = 0;
-  } else {
-    currentSong++;
-  }
-  audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
 }
 
 function setSong(event) {
-  if (+event.target.id === 0) {
-    currentSong = 0;
-  } else if (+event.target.id === 1) {
-    currentSong = 1;
-  } else {
-    currentSong = 2;
+  try {
+    if (+event.target.id === 0) {
+      currentSong = 0;
+    } else if (+event.target.id === 1) {
+      currentSong = 1;
+    } else {
+      currentSong = 2;
+    }
+    setStartPosOfAngle();
+    setStrelaStartPosition();
+    if (!flag) {
+      flag = true;
+      animation();
+      strelaRotation();
+    }
+    audioTime();
+    btnText("Stop");
+    audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
+    setSongName();
+    audio.play();
+  } catch (e) {
+    console.log(e + "/\t setSong error");
   }
-  if (buttonPlay.innerText == "Stop") {
-    animation();
+}
+
+function strelaRotation() {
+  try {
+    if (flag) {
+      if (rotateCoord <= endCoord) {
+        return;
+      }
+      rotateCoord -= 0.2;
+      strela.style.transform = `rotate(${rotateCoord}deg)`;
+      setTimeout(strelaRotation, t);
+    } else {
+      return;
+    }
+  } catch (e) {
+    console.log(e + "/\t strela error");
   }
-  flagChanger();
-  audio.pause();
-  btnText("Start");
-  audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
+}
+
+function setStartPosOfAngle() {
+  try {
+    angle = 0;
+  } catch (e) {
+    console.log(e + "/\t setStartPosOfAngle error");
+  }
+}
+
+function setStrelaStartPosition() {
+  try {
+    rotateCoord = 300;
+  } catch (e) {
+    console.log(e + "setStartPos error");
+  }
 }
