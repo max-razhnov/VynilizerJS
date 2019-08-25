@@ -89,11 +89,6 @@ function audioTime() {
         flag = false;
         animation();
         btnText("Start");
-        if (currentSong >= 2) {
-          currentSong = 0;
-        } else {
-          currentSong++;
-        }
       } else {
         timeTracker(audio.currentTime);
       }
