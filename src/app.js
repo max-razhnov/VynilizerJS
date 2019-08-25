@@ -17,8 +17,9 @@ import {
 let flag = false;
 let angle = 0;
 let currentSong = 0;
-let t = 100;
+let time = 1000;
 let rotateCoord = 300;
+let rotateDistance = 50;
 let endCoord = 250;
 
 btnSongTop.removeEventListener("click", setSong);
@@ -35,6 +36,7 @@ btnSongTop.addEventListener("click", setSong);
 btnSongDown.addEventListener("click", setSong);
 btnSongMiddle.addEventListener("click", setSong);
 audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
+audio.volume = 0;
 
 function startPlay() {
   try {
@@ -173,15 +175,23 @@ function setSong(event) {
   }
 }
 
+function angleForTime() {
+  try {
+    return +((rotateDistance * (time / 1000)) / audio.duration);
+  } catch (e) {
+    console.log(e + "/\t angleForTime error");
+  }
+}
+
 function strelaRotation() {
   try {
     if (flag) {
       if (rotateCoord <= endCoord) {
         return;
       }
-      rotateCoord -= 0.2;
+      rotateCoord -= angleForTime();
       strela.style.transform = `rotate(${rotateCoord}deg)`;
-      setTimeout(strelaRotation, t);
+      setTimeout(strelaRotation, time);
     } else {
       return;
     }
