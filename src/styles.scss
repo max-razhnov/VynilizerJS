@@ -1,14 +1,20 @@
 @font-face {
   font-family: "ProximaNova Medium";
-  src: url("fonts/ProximaNova/ProximaNova-Semibold.woff") format("woff"), url("fonts/ProximaNova/ProximaNova-Semibold.ttf") format("ttf");
+  src: url("fonts/ProximaNova/ProximaNova-Semibold.woff") format("woff"),
+    url("fonts/ProximaNova/ProximaNova-Semibold.ttf") format("ttf");
 }
+
 body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(180.3deg, #dddddd 5.5%, #6e88a1 90.2%);
+  background-image: linear-gradient(
+    180.3deg,
+    rgba(221, 221, 221, 1) 5.5%,
+    rgba(110, 136, 161, 1) 90.2%
+  );
 }
 
 #app {
@@ -22,7 +28,7 @@ body {
   position: relative;
   width: 700px;
   height: 700px;
-  background: url("img/Base.png") top no-repeat/contain;
+  background: url("img/Base.png") top no-repeat / contain;
 }
 
 .codek {
@@ -63,21 +69,21 @@ button {
   height: 30px;
   border: none;
   text-transform: uppercase;
-  font: 30px/normal;
+  font: 30px / normal;
   color: #fff;
   background: #4776e6;
   box-shadow: 0 0 10px 5px #085078;
 }
 
 h1 {
-  font: 30px/normal "Proxima Nova Medium";
+  font: 30px / normal "Proxima Nova Medium";
   color: #516395;
   text-transform: uppercase;
 }
 
 h2 {
   position: absolute;
-  font: 20px/normal "Proxima Nova Medium";
+  font: 20px / normal "Proxima Nova Medium";
   margin: 0;
   color: #fff;
   top: 35%;
@@ -88,7 +94,7 @@ h2 {
 
 h4 {
   color: #fff;
-  font: 30px/normal "Proxima Nova Medium";
+  font: 30px / normal "Proxima Nova Medium";
   text-align: center;
   margin: 5px;
 }
@@ -96,13 +102,13 @@ h4 {
 h5,
 #info {
   width: 100%;
-  font: 16px/normal "Proxima Nova Medium";
+  font: 16px / normal "Proxima Nova Medium";
   margin: 0;
   color: #fff;
 }
 
 .songList > button {
-  font: 14px/normal "Proxima Nova Medium";
+  font: 14px / normal "Proxima Nova Medium";
   color: #fff;
   outline: none;
   border: none;
@@ -120,5 +126,3 @@ h5,
   left: 10%;
   height: 20rem;
 }
-
-/*# sourceMappingURL=styles.css.map */
