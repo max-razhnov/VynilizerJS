@@ -12,7 +12,7 @@ import {
   btnSongTop,
   btnSongDown,
   btnSongMiddle
-} from "./const.js";
+} from "./js/const.js";
 
 let flag = false;
 let angle = 0;
