@@ -1,6 +1,6 @@
 @font-face {
   font-family: "ProximaNova Medium";
-  src: url("fonts/ProximaNova/ProximaNova-Semibold.woff") format("woff"), url("fonts/ProximaNova/ProximaNova-Semibold.ttf") format("ttf");
+  src: url("../fonts/ProximaNova/ProximaNova-Semibold.woff") format("woff"), url("../fonts/ProximaNova/ProximaNova-Semibold.ttf") format("ttf");
 }
 body {
   margin: 0;
@@ -22,7 +22,7 @@ body {
   position: relative;
   width: 700px;
   height: 700px;
-  background: url("img/Base.png") top no-repeat/contain;
+  background: url("../img/Base.png") top no-repeat/contain;
 }
 
 .codek {
