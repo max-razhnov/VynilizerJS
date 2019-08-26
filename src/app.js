@@ -36,7 +36,6 @@ btnSongTop.addEventListener("click", setSong);
 btnSongDown.addEventListener("click", setSong);
 btnSongMiddle.addEventListener("click", setSong);
 audio.src = `src/audio/${audioSongs[currentSong]}${format}`;
-audio.volume = 0;
 
 function startPlay() {
   try {
