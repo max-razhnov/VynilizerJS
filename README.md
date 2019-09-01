@@ -15,3 +15,6 @@
 Выполненное задание в виде ссылки на Гитхаб надо прислать на godelmastery@gmail.com 
 
 Мы ценим творчество и самовыражение, но если все сложно и «картинки не гуглятся», можно взять [стартовый пак графики](https://drive.google.com/file/d/1sMncoTmMUZbhrfF77avVB8HpXwWRal3A/view?usp=sharing). 
+
+![image Vynilizer JS](/vynil.jpg?raw=true "Vynilizer")
+
