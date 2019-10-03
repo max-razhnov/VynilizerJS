@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const express = require("express");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: "./src/app.js",
@@ -19,17 +18,11 @@ module.exports = {
       { test: /\.(woff|ttf|eot)$/, use: ["file-loader"] },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: ["css-loader", "sass-loader"]
-        })
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({ template: "./index.html" }),
-    new ExtractTextPlugin("dist/styles.css")
-  ],
+  plugins: [new HtmlWebpackPlugin({ template: "./index.html" })],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     open: true,
