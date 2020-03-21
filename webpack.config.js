@@ -22,6 +22,7 @@ module.exports = {
       }
     ]
   },
+  publicPath: "/VynilizerJS/",
   plugins: [new HtmlWebpackPlugin({ template: "./index.html" })],
   devServer: {
     contentBase: path.join(__dirname, "build"),
