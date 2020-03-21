@@ -17,14 +17,14 @@ module.exports = {
       },
       { test: /\.(woff|ttf|eot)$/, use: ["file-loader"] },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
   plugins: [new HtmlWebpackPlugin({ template: "./index.html" })],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "build"),
     open: true,
     port: 9000,
     compress: true,
