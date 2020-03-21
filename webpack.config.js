@@ -10,14 +10,14 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(mp3|wav|ogg|mpeg)$/, use: ["file-loader"] },
+      { test: /\.(mp3|wav|ogg|mpeg)$/i, use: ["file-loader"] },
       {
-        test: /\.(png|jpg|jpeg|svg|gif)$/,
+        test: /\.(png|jpg|jpeg|svg|gif)$/i,
         use: ["url-loader"]
       },
-      { test: /\.(woff|ttf|eot)$/, use: ["file-loader"] },
+      { test: /\.(woff|ttf|eot)$/i, use: ["file-loader"] },
       {
-        test: /\.(scss|sass)$/,
+        test: /\.(scss|sass)$/i,
         use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
