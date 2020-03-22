@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
-    publicPath: "/VynilizerJS",
+    publicPath: process.env.ASSET_PATH,
   },
   module: {
     rules: [
