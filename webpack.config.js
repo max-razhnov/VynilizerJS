@@ -6,7 +6,8 @@ module.exports = {
   entry: "./src/app.js",
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/VynilizerJS",
   },
   module: {
     rules: [
@@ -22,7 +23,6 @@ module.exports = {
       }
     ]
   },
-  publicPath: "/VynilizerJS/",
   plugins: [new HtmlWebpackPlugin({ template: "./index.html" })],
   devServer: {
     contentBase: path.join(__dirname, "build"),
