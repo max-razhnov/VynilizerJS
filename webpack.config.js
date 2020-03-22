@@ -5,9 +5,9 @@ const express = require("express");
 module.exports = {
   entry: "./src/app.js",
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: process.env.ASSET_PATH,
+    publicPath: process.env.ASSET_PATH
   },
   module: {
     rules: [
